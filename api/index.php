@@ -27,26 +27,23 @@ if($_SERVER["REQUEST_METHOD"] == "OPTIONS")
 }
 
 
-require_once "classes/DB.php";
 require_once "classes/FormValidator.php";
 require_once "classes/Json.php";
 
 use FormValidator\Form;
-use DB\DB;
 use Json\Json;
 
 
-$db = new DB;
-$validator = new form($_POST);
 $json = new json();
 
 $raw_input = file_get_contents("php://input");
 $_POST = json_decode($raw_input, true);
+$validator = new form($_POST);
 
 $method = $_SERVER['REQUEST_METHOD'];
 //print_r($_POST);die();
 if($method == 'POST'){
-
+	//die(json_encode($_POST));
 	$validator->validate([
 		'firstname' 	=> 'required|string',
 		'lastname' 		=> 'required|string',
@@ -57,13 +54,6 @@ if($method == 'POST'){
 	if($validator->passed()){
 
 		http_response_code(200);
-
-		$db->insert_contact([
-			'firstname' 	=> $validator->input('firstname'),
-			'lastname' 		=> $validator->input('lastname'),
-			'email' 		=> $validator->input('email')
-			'message' 		=> $validator->input('message'),
-		]);
 
 		$subject = $validator->input('firstname');
 		$to = "abdulsalamkayodeishaq@gmail.com";

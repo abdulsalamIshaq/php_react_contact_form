@@ -12,7 +12,6 @@ class App extends React.Component {
 			email: '',
 			message: '',
 			data: '',
-			error: null
 		}
 	}
 
@@ -33,13 +32,13 @@ class App extends React.Component {
             },
         })
         .then(res => {  
-            console.log(res.data)
+
             this.setState({
        			data: res.data,
+       			error: true
      		})
-
         })
-	    .catch(error => console.log(error));
+	    .catch(error => console.error(error));
 	}
 
 	render() {
@@ -48,7 +47,9 @@ class App extends React.Component {
 		      	<div className="container">
 		      		<h1>PHP React Contact Form</h1>
 
-		      		<form action="">
+		      		{(this.state.data.sent) ? <h1 className="success-msg">Message sent successfully</h1>: ''}
+
+		      		<form>
 
 		      			<label htmlFor="firstname">First Name</label>
 		      			<input type="text" id="firstname" className="firstname" 

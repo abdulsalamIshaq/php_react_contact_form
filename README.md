@@ -1,3 +1,13 @@
+# Simple React PHP Contact Form
+Here is a simple contact designed with React and php in order to improve my react skills because a'am a beginner. 
+## Prequest
+Before starting this project please make sure the following tools are being installed on your machine.
+
+1. Web Server (eg. xampp or nginx)
+2. node
+3. yarn or npm
+
+after having all this prequest you are good to proceed with the doc
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
